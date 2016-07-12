@@ -8,10 +8,10 @@ fi
 
 TAG=$1
 
-TAG_COMMAND="docker tag nomad:compose kurron/nomad:$TAG"
+TAG_COMMAND="docker tag jvm-build:compose kurron/jvm-build:$TAG"
 echo $TAG_COMMAND
 $TAG_COMMAND
 
-PUSH_COMMAND="docker push kurron/nomad:$TAG"
+PUSH_COMMAND="docker push kurron/jvm-build:$TAG"
 echo $PUSH_COMMAND
 $PUSH_COMMAND

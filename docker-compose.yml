@@ -1,9 +1,9 @@
 version: '2'
 services:
-    nomad:
+    jvm-build:
         build: .
-        image: nomad:compose
-        container_name: "nomad"
+        image: jvm-build:compose
+        container_name: "jvm-build"
         network_mode: "host"
         volumes:
         - .:/pwd

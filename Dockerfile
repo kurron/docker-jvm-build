@@ -1,14 +1,12 @@
-FROM ubuntu:14.04 
+FROM kurron/docker-oracle-jdk-8:1.8.0_91c
 
 MAINTAINER Ron Kurr <kurr@kurron.org>
 
-LABEL org.kurron.ide.name="Nomad" org.kurron.ide.version=0.4.0
-
-ADD https://releases.hashicorp.com/nomad/0.4.0/nomad_0.4.0_linux_amd64.zip /tmp/ide.zip
+LABEL org.kurron.ide.name="JVM Build" org.kurron.ide.version=1.8.0.91
 
 RUN apt-get update && \
-    apt-get install -y unzip ca-certificates && \
-    unzip /tmp/ide.zip -d /usr/local/bin && \
+    apt-get install -y ca-certificates curl && \
+    /usr/bin/curl --location --output /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.7.1/docker-compose-Linux-x86_64 && \ 
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
@@ -23,6 +21,4 @@ VOLUME ["/pwd"]
 VOLUME ["/var/run/docker.sock"]
 
 WORKDIR /pwd
-ENTRYPOINT ["/usr/local/bin/nomad"]
-CMD ["--version"]
-#CMD ["agent", "-dev"]
+CMD ["docker-compose", "--version"]
